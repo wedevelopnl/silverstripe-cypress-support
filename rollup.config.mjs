@@ -43,7 +43,7 @@ export default [
       commonjs(),
     ],
 
-    external: [...Object.keys(pkg.dependencies || {}), 'child_process', 'util'],
+    external: [...Object.keys(pkg.dependencies || {}), 'child_process', 'node-fetch', 'util'],
   },
   {
     input: './src/support/reload-database.js',
