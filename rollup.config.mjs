@@ -30,6 +30,24 @@ export default [
     external: [...Object.keys(pkg.dependencies || {})],
   },
   {
+    input: './src/tasks/index.js',
+    output: [
+      {
+        file: 'dist/silverstripe-cypress-tasks.js',
+        format: 'cjs',
+        globals: {
+          Cypress: 'cypress',
+        },
+      },
+      { file: 'dist/silverstripe-cypress-tasks.mjs', format: 'es' },
+    ],
+    plugins: [
+      commonjs(),
+    ],
+
+    external: [...Object.keys(pkg.dependencies || {})],
+  },
+  {
     input: './src/support/reload-database.js',
     output: [
       {
