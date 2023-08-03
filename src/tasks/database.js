@@ -3,8 +3,8 @@ import fetch from 'node-fetch';
 import util from 'util';
 const exec = util.promisify(child_process.exec);
 
-export const cypressReloadDBTask = async () => {
+export const cypressReloadDBTask = async (baseUrl) => {
   await exec('make reload-database');
-  await fetch(`${process.env.CYPRESS_BASE_URL}/dev/build`);
+  await fetch(`${baseUrl}/dev/build`);
   return null;
 }
