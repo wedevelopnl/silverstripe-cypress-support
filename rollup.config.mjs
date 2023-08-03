@@ -1,7 +1,6 @@
 import fs from 'fs'
 import del from 'rollup-plugin-delete';
 import commonjs from '@rollup/plugin-commonjs';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
 import json from '@rollup/plugin-json';
 import { preserveShebangs } from 'rollup-plugin-preserve-shebangs';
 
@@ -42,10 +41,9 @@ export default [
     plugins: [
       preserveShebangs(),
       json(),
-      nodeResolve(),
       commonjs(),
     ],
 
-    external: ['fs', 'zlib'],
+    external: [...Object.keys(pkg.dependencies || {}), 'fs', 'zlib'],
   },
 ];
