@@ -15,13 +15,12 @@ export default [
     input: './src/index.js',
     output: [
       {
-        file: pkg.main,
+        file: 'dist/silverstripe-cypress-support.js',
         format: 'cjs',
         globals: {
           Cypress: 'cypress',
         },
       },
-      { file: pkg.module, format: 'es' },
     ],
     plugins: [
       commonjs(),
@@ -39,13 +38,12 @@ export default [
           Cypress: 'cypress',
         },
       },
-      { file: 'dist/silverstripe-cypress-tasks.mjs', format: 'es' },
     ],
     plugins: [
       commonjs(),
     ],
 
-    external: [...Object.keys(pkg.dependencies || {})],
+    external: [...Object.keys(pkg.dependencies || {}), 'child_process', 'util'],
   },
   {
     input: './src/support/reload-database.js',

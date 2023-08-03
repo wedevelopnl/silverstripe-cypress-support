@@ -1,10 +1,13 @@
 {
     "name": "@wedevelopnl/silverstripe-cypress-support",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "A collection of Cypress helpers to simplify testing of a Silverstripe website",
     "license": "BSD-3-Clause license",
-    "main": "dist/silverstripe-cypress-support.js",
-    "module": "dist/silverstripe-cypress-support.mjs",
+    "exports": {
+        "./dist/silverstripe-cypress-support.js": "./dist/silverstripe-cypress-support.js",
+        "./dist/silverstripe-cypress-tasks.js": "./dist/silverstripe-cypress-tasks.js",
+        "./package.json": "./package.json"
+    },
     "files": [
         "dist"
     ],
