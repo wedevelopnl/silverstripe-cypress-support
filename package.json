@@ -4,10 +4,13 @@
     "description": "A collection of Cypress helpers to simplify testing of a Silverstripe website",
     "license": "BSD-3-Clause license",
     "main": "dist/cypress-support.js",
+    "module": "dist/cypress-support.mjs",
     "files": [
         "dist"
     ],
-    "scripts": {},
+    "scripts": {
+        "bundle": "rollup -c"
+    },
     "author": {
         "name": "WeDevelop",
         "email": "development@wedevelop.nl",
@@ -23,5 +26,16 @@
     ],
     "dependencies": {
         "mysql": "^2.18.1"
+    },
+    "devDependencies": {
+        "cypress-commands": "^3.0.0",
+        "rollup": "^3.27.1",
+        "rollup-plugin-commonjs": "^10.1.0",
+        "rollup-plugin-copy": "^3.4.0",
+        "rollup-plugin-delete": "^2.0.0",
+        "rollup-plugin-json": "^4.0.0"
+    },
+    "bin": {
+        "reload-database": "./dist/support/reload-database.js"
     }
 }
