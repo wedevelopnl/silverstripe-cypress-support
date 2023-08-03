@@ -1,0 +1,27 @@
+{
+    "name": "@wedevelopnl/silverstripe-cypress-support",
+    "version": "0.0.1",
+    "description": "A collection of Cypress helpers to simplify testing of a Silverstripe website",
+    "license": "BSD-3-Clause license",
+    "main": "dist/cypress-support.js",
+    "files": [
+        "dist"
+    ],
+    "scripts": {},
+    "author": {
+        "name": "WeDevelop",
+        "email": "development@wedevelop.nl",
+        "url": "https://wedevelop.nl"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wedevelopnl/silverstripe-cypress-support.git"
+    },
+    "keywords": [
+        "Cypress",
+        "command"
+    ],
+    "dependencies": {
+        "mysql": "^2.18.1"
+    }
+}
