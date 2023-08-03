@@ -1,8 +1,9 @@
 import fs from 'fs'
-import buildins from 'rollup-plugin-node-builtins'
 import del from 'rollup-plugin-delete';
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import json from '@rollup/plugin-json';
+import { preserveShebangs } from 'rollup-plugin-preserve-shebangs';
 
 const pkg = JSON.parse(fs.readFileSync('./package.json'));
 
@@ -40,9 +41,12 @@ export default [
     ],
 
     plugins: [
+      preserveShebangs(),
+      json(),
+      nodeResolve(),
       commonjs(),
     ],
 
-    external: [...Object.keys(pkg.dependencies || {}), 'fs', 'zlib', 'path'],
+    external: ['fs', 'zlib'],
   },
 ];

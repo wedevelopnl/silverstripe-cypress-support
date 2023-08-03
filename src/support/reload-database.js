@@ -1,12 +1,15 @@
-#!/usr/bin/node
+#!/usr/bin/env node
 import dotenv from 'dotenv';
 import mysql from 'mysql';
 import fs from 'fs';
 import zlib from 'zlib';
-import path from 'path';
 
 if (process.argv[2] !== 'yes') {
 	process.exit(1);
+}
+
+if (!process.argv[3] || !fs.existsSync(process.argv[3])) {
+  process.exit(1);
 }
 
 dotenv.config();
@@ -32,9 +35,8 @@ connection.connect((err) => {
 				});
 		});
 
-		const dumpFilePath = path.join(__dirname, '../../dev/docker/mariadb/initdb.sql.gz');
 		let sql = '';
-		fs.createReadStream(dumpFilePath)
+		fs.createReadStream(process.argv[3])
 			.pipe(zlib.createGunzip())
 			.on('data', (chunk) => {
 				sql += chunk.toString();
