@@ -1,43 +1,48 @@
 import fs from 'fs'
+import buildins from 'rollup-plugin-node-builtins'
 import del from 'rollup-plugin-delete';
-import commonjs from 'rollup-plugin-commonjs';
-import json from 'rollup-plugin-json';
-import copy from 'rollup-plugin-copy';
+import commonjs from '@rollup/plugin-commonjs';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 const pkg = JSON.parse(fs.readFileSync('./package.json'));
 
-export default {
-  input: './src/index.js',
-  output: [
-    {
-      file: pkg.main,
-      format: 'cjs',
-      globals: {
-        Cypress: 'cypress',
+del({
+  targets: pkg.files,
+});
+
+export default [
+  {
+    input: './src/index.js',
+    output: [
+      {
+        file: pkg.main,
+        format: 'cjs',
+        globals: {
+          Cypress: 'cypress',
+        },
       },
-    },
-    { file: pkg.module, format: 'es' },
-  ],
-  external: ['cypress-commands'],
-  plugins: [
-    // Delete contents of target folder
-    del({
-      targets: pkg.files,
-    }),
+      { file: pkg.module, format: 'es' },
+    ],
+    plugins: [
+      commonjs(),
+    ],
 
-    // Resolve JSON files
-    json(),
+    external: [...Object.keys(pkg.dependencies || {})],
+  },
+  {
+    input: './src/support/reload-database.js',
+    output: [
+      {
+        file: './dist/support/reload-database.js',
+        format: 'cjs',
+      },
+      { file: pkg.module, format: 'es' },
+    ],
 
-    // Compile to commonjs and bundle
-    commonjs(),
+    plugins: [
+      commonjs(),
+    ],
 
-    // Copy type definitions to target folder
-    copy({
-      targets: [
-        { src: './src/support/*.js', dest: './dist/support/' },
-      ],
-    }),
-  ],
-
-  external: [...Object.keys(pkg.dependencies || {})],
-};
+    external: [...Object.keys(pkg.dependencies || {}), 'fs', 'zlib', 'path'],
+  },
+];

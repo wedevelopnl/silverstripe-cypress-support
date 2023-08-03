@@ -1,12 +1,15 @@
 #!/usr/bin/node
-const mysql = require('mysql');
-const fs = require('fs');
-const zlib = require('zlib');
-const path = require('path');
+import dotenv from 'dotenv';
+import mysql from 'mysql';
+import fs from 'fs';
+import zlib from 'zlib';
+import path from 'path';
 
 if (process.argv[2] !== 'yes') {
 	process.exit(1);
 }
+
+dotenv.config();
 
 const connection = mysql.createConnection({
 	host: process.env.SS_DATABASE_SERVER,
