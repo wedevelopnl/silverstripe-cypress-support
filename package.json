@@ -1,6 +1,6 @@
 {
     "name": "@wedevelopnl/silverstripe-cypress-support",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "A collection of Cypress helpers to simplify testing of a Silverstripe website",
     "license": "BSD-3-Clause license",
     "main": "dist/silverstripe-cypress-support.js",

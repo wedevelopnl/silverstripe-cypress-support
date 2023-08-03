@@ -37,7 +37,6 @@ export default [
         file: './dist/support/reload-database.js',
         format: 'cjs',
       },
-      { file: pkg.module, format: 'es' },
     ],
 
     plugins: [
