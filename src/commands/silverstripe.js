@@ -4,7 +4,7 @@ Cypress.Commands.add('login', () => {
     () => {
       cy.visit('/Security/login')
 
-      cy.get('input[name="Email"]').type('development@wedevelop.nl');
+      cy.get('input[name="Email"]').type(Cypress.env('admin_email'));
       cy.get('input[name="Password"]').type(Cypress.env('admin_password'), { log: false });
       cy.get('input[name="action_doLogin"]').click()
       cy.getCookie('PHPSESSID').should('exist');
