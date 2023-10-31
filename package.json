@@ -8,6 +8,9 @@
         "./dist/*.js": "./dist/*.js",
         "./package.json": "./package.json"
     },
+    "publishConfig": {
+        "@wedevelopnl:registry": "https://npm.pkg.github.com"
+    },
     "files": [
         "dist"
     ],
