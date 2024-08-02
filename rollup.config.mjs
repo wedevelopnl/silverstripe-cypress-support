@@ -26,7 +26,7 @@ export default [
       commonjs(),
     ],
 
-    external: [...Object.keys(pkg.dependencies || {})],
+    external: [...Object.keys(pkg.dependencies || {}), '_chai', 'chai'],
   },
   {
     input: './src/tasks/index.js',
