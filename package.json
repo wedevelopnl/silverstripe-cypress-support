@@ -1,11 +1,12 @@
 {
     "name": "@wedevelopnl/silverstripe-cypress-support",
-    "version": "0.0.18",
+    "version": "0.0.19",
     "description": "A collection of Cypress helpers to simplify testing of a Silverstripe website",
     "license": "BSD-3-Clause license",
     "exports": {
         ".": "./dist/silverstripe-cypress-support.js",
         "./dist/*.js": "./dist/*.js",
+        "./dist/**/*.js": "./dist/**/*.js",
         "./package.json": "./package.json"
     },
     "publishConfig": {

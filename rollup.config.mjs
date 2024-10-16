@@ -62,4 +62,18 @@ export default [
 
     external: [...Object.keys(pkg.dependencies || {}), 'fs', 'zlib'],
   },
+  {
+    input: './src/support/cloudflare.js',
+    output: [
+      {
+        file: './dist/support/cloudflare.js',
+        format: 'cjs',
+      },
+    ],
+
+    plugins: [
+      json(),
+      commonjs(),
+    ],
+  },
 ];
